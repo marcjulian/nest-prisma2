@@ -1,9 +1,17 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
 import Photon from '@generated/photon';
 
 @Injectable()
-export class PhotonService extends Photon {
+export class PhotonService extends Photon
+  implements OnModuleInit, OnModuleDestroy {
   constructor() {
     super();
+  }
+  async onModuleInit() {
+    await this.connect();
+  }
+
+  async onModuleDestroy() {
+    await this.disconnect();
   }
 }
