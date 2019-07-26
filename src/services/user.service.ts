@@ -7,22 +7,14 @@ export class UserService {
   constructor(private photonService: PhotonService) {}
 
   async findUserById(userId: string): Promise<User> {
-    try {
-      return this.photonService.users.findOne({
-        where: { id: userId }
-      });
-    } finally {
-      await this.photonService.disconnect();
-    }
+    return this.photonService.users.findOne({
+      where: { id: userId }
+    });
   }
 
   async findUserByEmail(email: string): Promise<User> {
-    try {
-      return this.photonService.users.findOne({
-        where: { email: email }
-      });
-    } finally {
-      await this.photonService.disconnect();
-    }
+    return this.photonService.users.findOne({
+      where: { email: email }
+    });
   }
 }
