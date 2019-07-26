@@ -6,6 +6,7 @@
 type Auth {
   """JWT Beare token"""
   token: String!
+  user: User!
 }
 
 type Mutation {
@@ -15,4 +16,11 @@ type Mutation {
 type Query {
   helloWorld: String!
   hello(name: String!): String!
+}
+
+type User {
+  id: String!
+  email: String!
+  firstname: String!
+  lastname: String!
 }

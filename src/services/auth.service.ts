@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from './user.service';
 import { PasswordService } from './password.service';
+import { User } from '@generated/photon';
 
 @Injectable()
 export class AuthService {
@@ -13,8 +14,6 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<string> {
     const user = await this.userService.findUserByEmail(email);
-
-    console.log(user);
 
     if (!user) {
       throw new Error(`No user found for email: ${email}`);
@@ -30,5 +29,10 @@ export class AuthService {
     }
 
     return this.jwtService.sign({ userId: user.id });
+  }
+
+  getUserFromToken(token: string): Promise<User> {
+    const userId = this.jwtService.decode(token)['userId'];
+    return this.userService.findUserById(userId);
   }
 }
