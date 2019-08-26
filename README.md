@@ -1,3 +1,5 @@
+🚧 Checkout [nestjs-prisma-starter](https://github.com/fivethree-team/nestjs-prisma-starter/tree/prisma2)
+
 # Nest Prisma2
 
 ## Getting Started
